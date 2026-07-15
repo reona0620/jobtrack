@@ -1,19 +1,12 @@
-const applications = [
-  {
-    id: 1,
-    companyName: "サンプル株式会社",
-    position: "Webエンジニア",
-    status: "応募済み",
-    deadline: "2026-07-31",
-  },
-  {
-    id: 2,
-    companyName: "テストテクノロジー株式会社",
-    position: "フロントエンドエンジニア",
-    status: "検討中",
-    deadline: "未設定",
-  },
-];
+import { mockApplications } from "@/data/mock-applications";
+
+const statusLabels = {
+  considering: "検討中",
+  applied: "応募済み",
+  interview: "面接中",
+  offer: "内定",
+  rejected: "不採用",
+};
 
 export default function Home() {
   return (
@@ -39,7 +32,7 @@ export default function Home() {
           </h2>
 
           <div className="grid gap-4">
-            {applications.map((application) => (
+            {mockApplications.map((application) => (
               <article
                 key={application.id}
                 className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
@@ -56,9 +49,9 @@ export default function Home() {
                   </div>
 
                   <div className="text-sm text-slate-600">
-                    <p>状況：{application.status}</p>
+                    <p>状況：{statusLabels[application.status]}</p>
                     <p className="mt-1">
-                      締切：{application.deadline}
+                      締切：{application.deadline ?? "未設定"}
                     </p>
                   </div>
                 </div>
