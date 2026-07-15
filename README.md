@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JobTrack
 
-## Getting Started
+就職活動中の応募企業、選考状況、締切、面接メモを一元管理するWebアプリケーションです。
 
-First, run the development server:
+複数企業へ応募すると情報が散らばりやすいという課題を解決するため、登録・検索・更新・集計をひとつのダッシュボードにまとめました。
+
+## 主な機能
+
+- 応募企業の登録・編集・削除
+- 本選考とインターンの区分管理
+- 面接・インターンなど複数予定の開始日時、任意の終了日時、メモ管理
+- 選考状況（検討中・応募済み・面接中・内定・不採用）の管理
+- 企業名、職種、メモを対象にした検索
+- 本選考・インターンによる絞り込み
+- 選考状況による絞り込み
+- 更新日、応募締切、企業名による並び替え
+- 登録企業数、選考中、面接中、内定数の集計
+- 集計カードをクリックした該当企業の一覧表示
+- 7日以内の応募締切を「締切間近」として表示
+- 応募締切と各予定をまとめた「直近の予定」表示
+- 求人・企業ページへのリンク
+- CSV形式でのデータ出力
+- ブラウザへのデータ永続化
+- スマートフォン・PCのレスポンシブ表示
+
+## 使用技術
+
+- Next.js 16（App Router）
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Local Storage
+- ESLint
+
+## 設計上のポイント
+
+- ページ本体はServer Componentとして保ち、ブラウザAPIや状態管理が必要な部分だけをClient Componentに分離しています。
+- 企業データの型、表示用メタデータ、保存処理、フォーム、画面を別々のモジュールへ分離しています。
+- 登録と編集で同じフォームコンポーネントを再利用しています。
+- データアクセスを`useApplications`へ集約し、将来Supabaseなどへ保存先を変更しやすい構成にしています。
+- 必須項目、URL形式、削除確認など、誤操作を防ぐための基本的な入力検証を実装しています。
+
+## ローカルでの起動
+
+Node.js 20.9以上が必要です。
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで[http://localhost:3000](http://localhost:3000)を開きます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 品質チェック
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## データについて
 
-To learn more about Next.js, take a look at the following resources:
+現在のバージョンでは、登録したデータをブラウザのLocal Storageへ保存します。同じブラウザでは再読み込み後もデータが残りますが、別の端末やブラウザとは共有されません。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 今後の改善案
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Supabaseによるデータベース保存
+- ユーザー登録・ログイン
+- ユーザー単位のアクセス制御
+- カレンダー表示と締切通知
+- 選考通過率などの分析グラフ
+- 自動テストとGitHub Actions
