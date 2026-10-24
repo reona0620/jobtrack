@@ -22,39 +22,48 @@ export const scheduleTypeBadgeClasses: Record<ScheduleType, string> = {
   other: "bg-slate-100 text-slate-700 ring-slate-200",
 };
 
-export const selectionTypes: SelectionType[] = ["full_time", "internship"];
+export const selectionTypes: SelectionType[] = [
+  "full_time",
+  "early_selection",
+  "internship",
+];
 
 export const selectionTypeLabels: Record<SelectionType, string> = {
   full_time: "本選考",
+  early_selection: "早期選考",
   internship: "インターン",
 };
 
 export const selectionTypeBadgeClasses: Record<SelectionType, string> = {
   full_time: "bg-violet-50 text-violet-700 ring-violet-200",
+  early_selection: "bg-amber-50 text-amber-800 ring-amber-200",
   internship: "bg-cyan-50 text-cyan-700 ring-cyan-200",
 };
 
 export const applicationStatuses: ApplicationStatus[] = [
-  "considering",
   "applied",
   "interview",
   "offer",
+  "offer_declined",
   "rejected",
 ];
 
 export const statusLabels: Record<ApplicationStatus, string> = {
-  considering: "検討中",
+  // Legacy local data may still contain this value; normalize it to the visible label.
+  considering: "応募済み",
   applied: "応募済み",
   interview: "面接中",
   offer: "内定",
+  offer_declined: "内定辞退",
   rejected: "不採用",
 };
 
 export const statusBadgeClasses: Record<ApplicationStatus, string> = {
-  considering: "bg-slate-100 text-slate-700 ring-slate-200",
+  considering: "bg-teal-50 text-teal-800 ring-teal-200",
   applied: "bg-blue-50 text-blue-700 ring-blue-200",
   interview: "bg-amber-50 text-amber-700 ring-amber-200",
   offer: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  offer_declined: "bg-slate-100 text-slate-700 ring-slate-300",
   rejected: "bg-rose-50 text-rose-700 ring-rose-200",
 };
 

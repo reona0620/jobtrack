@@ -3,9 +3,10 @@ export type ApplicationStatus =
   | "applied"
   | "interview"
   | "offer"
+  | "offer_declined"
   | "rejected";
 
-export type SelectionType = "full_time" | "internship";
+export type SelectionType = "full_time" | "early_selection" | "internship";
 
 export type ScheduleType = "interview" | "internship" | "other";
 
@@ -17,16 +18,38 @@ export type ApplicationSchedule = {
   note: string;
 };
 
-export type JobApplication = {
+export type EntrySheetResponse = {
   id: string;
-  selectionType: SelectionType;
-  companyName: string;
+  question: string;
+  answer: string;
+};
+
+export type ApplicationTrack = {
+  id: string;
+  selectionType: SelectionType | null;
   position: string;
   status: ApplicationStatus;
   deadline: string | null;
   schedules: ApplicationSchedule[];
-  companyUrl: string | null;
   memo: string;
+  entrySheetResponses: EntrySheetResponse[];
+};
+
+export type JobApplication = {
+  id: string;
+  selectionType: SelectionType | null;
+  companyName: string;
+  position: string;
+  positions?: string[];
+  status: ApplicationStatus;
+  deadline: string | null;
+  schedules: ApplicationSchedule[];
+  companyUrl: string | null;
+  userId?: string | null;
+  memo: string;
+  entrySheetText?: string;
+  entrySheetResponses?: EntrySheetResponse[];
+  tracks?: ApplicationTrack[];
   createdAt: string;
   updatedAt: string;
 };

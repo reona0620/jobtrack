@@ -21,13 +21,29 @@ export const mockApplications: JobApplication[] = [
     memo: "自社開発のプロダクトについて、面接前に確認する。",
     createdAt: "2026-07-15T00:00:00.000Z",
     updatedAt: "2026-07-15T00:00:00.000Z",
+    tracks: [{
+      id: "sample-track-1",
+      selectionType: "full_time",
+      position: "Webエンジニア",
+      status: "applied",
+      deadline: "2026-07-31",
+      schedules: [{
+        id: "sample-schedule-1",
+        type: "interview",
+        startsAt: "2026-07-24T14:00",
+        endsAt: null,
+        note: "一次面接（オンライン）",
+      }],
+      memo: "自社開発のプロダクトについて、面接前に確認する。",
+      entrySheetResponses: [],
+    }],
   },
   {
     id: "sample-2",
     selectionType: "internship",
     companyName: "テストテクノロジー株式会社",
     position: "フロントエンドエンジニア",
-    status: "considering",
+    status: "applied",
     deadline: null,
     schedules: [
       {
@@ -42,5 +58,21 @@ export const mockApplications: JobApplication[] = [
     memo: "募集要項と技術スタックを確認する。",
     createdAt: "2026-07-15T00:00:00.000Z",
     updatedAt: "2026-07-15T00:00:00.000Z",
+    tracks: [{
+      id: "sample-track-2",
+      selectionType: "internship",
+      position: "フロントエンドエンジニア",
+      status: "applied",
+      deadline: null,
+      schedules: [{
+        id: "sample-schedule-2",
+        type: "internship",
+        startsAt: "2026-08-05T10:00",
+        endsAt: "2026-08-07T18:00",
+        note: "1day開発インターン",
+      }],
+      memo: "募集要項と技術スタックを確認する。",
+      entrySheetResponses: [],
+    }],
   },
 ];
